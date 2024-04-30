@@ -9,7 +9,15 @@ string connection = builder.Configuration.GetConnectionString("DefaultConnection
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IRequestRepository, RequestRepository>();
+builder.Services.AddTransient<IBlogRepository, BlogRepository>();
 builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<RequestContext>(options => options.UseSqlServer(connection));
+
+
+builder.Services.AddControllersWithViews();
+
+
 
 var app = builder.Build();
 

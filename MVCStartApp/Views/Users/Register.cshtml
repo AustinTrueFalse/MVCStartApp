@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Регистрация нового пользователя.";
+}
+@model MVCStartApp.Models.Db.User;
+
+<style>
+    table {
+        border-spacing: 0 15px;
+        align-self: center;
+    }
+
+    th {
+        background-color: #4287f5;
+        color: white;
+    }
+
+    th,
+    td {
+        width: 150px;
+        text-align: center;
+        border: none;
+        padding: 5px;
+    }
+
+    h2 {
+        color: #4287f5;
+    }
+
+    .submit-button {
+        position: absolute;
+        margin-left: 140px;
+    }
+</style>
+
+<div class="text-center">
+    <div>
+        @if (Model == null)
+        {
+            <h3 style="text-align: left">Добро пожаловать в наш блог!</h3>
+            <br>
+            <form method="post" asp-controller="Users" asp-action="Register">
+                <table>
+                    <tr>
+                        <td><label asp-for="FirstName">Имя:</label></td>
+                        <td><input class="form-control" asp-for="FirstName" /></td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="LastName">Фамилия:</label></td>
+                        <td><input class="form-control" asp-for="LastName" /></td>
+                    </tr>
+                </table>
+                <br>
+                <div class="submit-button">
+                    <input type="submit" value="Регистрация" />
+                </div>
+            </form>
+        }
+        else
+        {
+            @await Html.PartialAsync("Success.cshtml")
+        }
+    </div>
+</div>
